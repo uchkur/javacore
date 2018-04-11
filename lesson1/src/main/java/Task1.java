@@ -17,10 +17,22 @@
 
 public class Task1 {
     public static void main(String[] args) {
+        long sum_char_codes = 0;
+        long total = 0;
+        String sumsigns = "";
         for (String arg:args)
-            for (int i = 0; i < arg.length(); i++)
-            {
-                System.out.println(arg.charAt(i));
+        {
+            if (arg.length() > 20) continue; //по условию - аргументы должны быть не более 20 символов
+                for (int i = 0; i < arg.length(); i++) {
+                    sum_char_codes = sum_char_codes + (int) arg.charAt(i);
+                    if ((int) arg.charAt(i)%10 == 0) {sumsigns = sumsigns + "+";}
+                    if ((int) arg.charAt(i) < 128) {sumsigns = sumsigns + "b";}
+                    }
+                System.out.println(sum_char_codes + sumsigns);
+                total=total+sum_char_codes;
+                sum_char_codes = 0;
+                sumsigns="";
             }
+            System.out.println("total: " + total);
+        }
     }
-}
