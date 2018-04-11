@@ -22,11 +22,12 @@ public class Task1 {
         String addon = " ";
         for (String arg:args)
         {
+            System.out.println("String.length = " + arg.length());
             if (arg.length() > 20) continue; //по условию - аргументы должны быть не более 20 символов
                 for (int i = 0; i < arg.length(); i++) {
-                    sum_char_codes = sum_char_codes + (int) arg.charAt(i);
-                    if ((int) arg.charAt(i)%10 == 0) {addon = addon + "+";}
-                    if ((int) arg.charAt(i) < 128) {addon = addon + "b";}
+                    sum_char_codes = sum_char_codes + arg.charAt(i);
+                    if (arg.charAt(i)%10 == 0) {addon = addon + "+";}
+                    if (arg.charAt(i) < 128) {addon = addon + "b";}
                     }
                 System.out.println(sum_char_codes + addon);
                 total=total+sum_char_codes;
@@ -35,4 +36,34 @@ public class Task1 {
             }
             System.out.println("total: " + total);
         }
+
+    public static void main_unicode(String[] args) {
+        long sum_code_points_codes= 0;
+        long total = 0;
+        String addon = " ";
+        for (String arg:args)
+        {
+            int cpCount = arg.codePointCount(0, arg.length()); //истинная длина, число кодовых точек
+            System.out.println("String.codePointCount = " + cpCount);
+            int i = 0;
+            int index = 0;
+            int cp = 0;
+            char c;
+            while (i < cpCount)
+            {
+                index = arg.offsetByCodePoints(0, i);
+                cp = arg.codePointAt(index);
+                sum_code_points_codes = sum_code_points_codes + cp;
+                if (cp%10 == 0) {addon = addon + "+";}
+                if (cp < 128) {addon = addon + "b";}
+                if (Character.isSupplementaryCodePoint(cp)) i += 2;
+                else i++;
+            }
+            System.out.println(sum_code_points_codes + addon);
+            total = total + sum_code_points_codes;
+            sum_code_points_codes = 0;
+            addon = " ";
+        }
+        System.out.println("total: " + total);
+    }
     }
