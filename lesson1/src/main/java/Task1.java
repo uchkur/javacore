@@ -19,19 +19,19 @@ public class Task1 {
     public static void main(String[] args) {
         long sum_char_codes = 0;
         long total = 0;
-        String sumsigns = "";
+        String addon = " ";
         for (String arg:args)
         {
             if (arg.length() > 20) continue; //по условию - аргументы должны быть не более 20 символов
                 for (int i = 0; i < arg.length(); i++) {
                     sum_char_codes = sum_char_codes + (int) arg.charAt(i);
-                    if ((int) arg.charAt(i)%10 == 0) {sumsigns = sumsigns + "+";}
-                    if ((int) arg.charAt(i) < 128) {sumsigns = sumsigns + "b";}
+                    if ((int) arg.charAt(i)%10 == 0) {addon = addon + "+";}
+                    if ((int) arg.charAt(i) < 128) {addon = addon + "b";}
                     }
-                System.out.println(sum_char_codes + sumsigns);
+                System.out.println(sum_char_codes + addon);
                 total=total+sum_char_codes;
                 sum_char_codes = 0;
-                sumsigns="";
+                addon=" ";
             }
             System.out.println("total: " + total);
         }
