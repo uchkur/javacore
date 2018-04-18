@@ -31,6 +31,7 @@ public class ArraysStudy {
         int groupSize = 2;
         System.out.println(Arrays.deepToString(transform(arr, groupSize)));
     }
+
     public static int[][] transform(int[] arr, int groupSize) {
         int[][] twoDimArr = vector2da(arr, groupSize);
         int[][] sortedArr;
@@ -68,6 +69,7 @@ public class ArraysStudy {
             }
             l = 0;
             summa = 0;
+
         }
         return Arrays.copyOfRange(tmp, 0, m);
     }
