@@ -43,6 +43,7 @@ public class Task1 {
         String addon = " ";
         for (String arg:args)
         {
+            System.out.println(arg);
             int cpCount = arg.codePointCount(0, arg.length()); //истинная длина, число кодовых точек
             System.out.println("String.codePointCount = " + cpCount);
             int i = 0;
@@ -65,5 +66,10 @@ public class Task1 {
             addon = " ";
         }
         System.out.println("total: " + total);
+    }
+
+    public static void horstman77(String arg) {
+        String s = arg.substring(0, 3);
+        System.out.println(s);
     }
     }
