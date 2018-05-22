@@ -1,0 +1,68 @@
+/*
+    Здание - крыша, потолок (плиты перекрытия),
+    стены - несущие и перегородки, фундамент, пол, окна, двери, вентиляция.
+
+
+    Человек открыл дверь и вошел в подъезд
+    подошел к турникету и приложил пропуск
+    прошел через турникет в помещение
+    поднялся по лестнице и открыл дверь
+    прошел в гардероб и повесил одежду
+    включил свет и прошел к своему рабочему месту
+    включил компьютер
+*/
+@startuml
+abstract class AbstractBuilding {
+}
+
+interface Openable{
+    +open()
+    +close()
+}
+
+interface Switchable{
+    +turnOn()
+    +turnOff()
+}
+
+interface Drillable{
+    +drill()
+}
+
+abstract class AbstractWindow implements Openable {
+
+}
+
+class Color{
+    +int red
+    +int green
+    +int blue
+}
+
+class Size{
+    -width
+    -heigth
+    +setWidth
+    +setHeigth
+}
+
+abstract class AbstractDoor implements Openable, Drillable{
+    +Color color
+    +Size size
+}
+abstract class AbstractTurniket implements Openable
+abstract class AbstractRoof{
+    -Size
+    +getArea()
+}
+
+abstract class AbstractSwitch implements Switchable
+abstract class AbstractWall
+
+AbstractBuilding *-- AbstractWindow
+AbstractBuilding *-- AbstractDoor
+
+class Office extends AbstractBuilding
+class SlateRoof extends AbstractRoof implements Drillable
+
+@enduml
