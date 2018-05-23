@@ -8,7 +8,7 @@ public class Board {
     {
 
         if ( size < 2 || size > 20 ) {
-            throw new IllegalArgumentException("Сторона доски должна быть от 2 до 20 клеток");
+            throw new IllegalArgumentException("Г‘ГІГ®Г°Г®Г­Г  Г¤Г®Г±ГЄГЁ Г¤Г®Г«Г¦Г­Г  ГЎГ»ГІГј Г®ГІ 2 Г¤Г® 20 ГЄГ«ГҐГІГ®ГЄ");
         };
         ROWS=COLS=size;
         cells = new Cell[ROWS][COLS];

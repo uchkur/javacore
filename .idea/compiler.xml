@@ -6,16 +6,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="groovy_java8" />
         <module name="lesson1" />
         <module name="lesson2" />
         <module name="lesson3" />
+        <module name="lesson4" />
+        <module name="tictactoe" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="javacore" target="1.5" />
+      <module name="groovy_java8" target="1.5" />
+      <module name="java-core" target="1.5" />
       <module name="lesson1" target="1.5" />
       <module name="lesson2" target="1.5" />
       <module name="lesson3" target="1.5" />
+      <module name="lesson4" target="1.5" />
+      <module name="tictactoe" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

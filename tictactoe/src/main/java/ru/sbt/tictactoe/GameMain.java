@@ -12,6 +12,10 @@ public class GameMain {
 
     public GameMain() {
         int size = 3;
+        System.out.println("Играете за 0? [0 - за нолик, другая цифра - крестик]");
+        if (in.nextInt() == 0)
+            currentPlayer=Seed.NOUGHT;
+        else currentPlayer=Seed.CROSS;
         System.out.println("Играем с компьютером? (0 = НЕТ, 1 = ДА)");
         isAIGame = (in.nextInt() == 0)?false:true;
         if (isAIGame)
