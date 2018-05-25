@@ -8,7 +8,7 @@ public class Board {
     {
 
         if ( size < 2 || size > 20 ) {
-            throw new IllegalArgumentException("Ñòîðîíà äîñêè äîëæíà áûòü îò 2 äî 20 êëåòîê");
+            throw new IllegalArgumentException("");
         };
         ROWS=COLS=size;
         cells = new Cell[ROWS][COLS];
