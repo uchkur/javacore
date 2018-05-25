@@ -11,6 +11,7 @@ public class AIPlayerMinimax extends AIPlayer
    public int[] move()
    {
       int[] result = minimax(2, mySeed);
+      return result;
    }
 
    private int[] minimax (int depth, Seed player) {
@@ -23,7 +24,7 @@ public class AIPlayerMinimax extends AIPlayer
          bestScore = evaluate();
       } else  {
          for (int[] move : nextMoves) {
-            cells[move[0][move[1]]].content = player;
+            this.cells[move[0]][move[1]].content = player;
             if (player == mySeed){
                currentScore = minimax(depth - 1, oppSeed)[0];
                if (currentScore > bestScore) {
