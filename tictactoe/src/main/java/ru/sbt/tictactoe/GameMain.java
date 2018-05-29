@@ -28,6 +28,7 @@ public class GameMain {
             board = new Board(in.nextInt()); //todo refactor it
         }
         this.aiPlayer = new AIPlayerMinimax(board);
+        aiPlayer.setSeed((currentPlayer == Seed.CROSS)? Seed.NOUGHT : Seed.CROSS);
         initGame();
         do {
             playerMove(currentPlayer);
@@ -52,6 +53,7 @@ public class GameMain {
     public void playerMove(Seed theSeed) {
         boolean validInput = false;
         int row = 0, col = 0;
+        int[] mv = {0,0};
         do {
             if (theSeed == Seed.CROSS) {
                 System.out.printf
@@ -59,12 +61,20 @@ public class GameMain {
                      board.ROWS, board.COLS);
                 row = in.nextInt() - 1;
                 col = in.nextInt() - 1;
+                if (isAIGame) {
+                    //int[] mv = {0,0};
+                    mv[0] = aiPlayer.move()[1];
+                    mv[1] = aiPlayer.move()[2];
+                    row = mv[0];
+                    col = mv[1];
+                }
             }
             else
             {
                 if (isAIGame) {
-                    int[] mv;
-                    mv = aiPlayer.move();
+                    //int[] mv = {0,0};
+                    mv[0] = aiPlayer.move()[1];
+                    mv[1] = aiPlayer.move()[2];
                     row = mv[0];
                     col = mv[1];
                 }
