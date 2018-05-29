@@ -10,7 +10,7 @@ public class AIPlayerMinimax extends AIPlayer
    @Override
    public int[] move()
    {
-      int[] result = minimax(2, mySeed);
+      int[] result = minimax(4, mySeed);
       return result;
    }
 

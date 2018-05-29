@@ -55,13 +55,15 @@ public class GameMain {
         int row = 0, col = 0;
         int[] mv = {0,0};
         do {
-            if (theSeed == Seed.CROSS) {
+            if (theSeed == Seed.CROSS && (theSeed != aiPlayer.mySeed
+                    )) {
                 System.out.printf
                     ("Игрок 'X', ваш ход (строка [1-%s] столбец[1-%s]: ",
                      board.ROWS, board.COLS);
                 row = in.nextInt() - 1;
                 col = in.nextInt() - 1;
-                if (isAIGame) {
+
+                if (isAIGame && (theSeed == aiPlayer.mySeed)) {
                     //int[] mv = {0,0};
                     mv[0] = aiPlayer.move()[1];
                     mv[1] = aiPlayer.move()[2];
@@ -71,7 +73,7 @@ public class GameMain {
             }
             else
             {
-                if (isAIGame) {
+                if (isAIGame && (theSeed == aiPlayer.mySeed) ) {
                     //int[] mv = {0,0};
                     mv[0] = aiPlayer.move()[1];
                     mv[1] = aiPlayer.move()[2];
@@ -85,9 +87,14 @@ public class GameMain {
                          , board.ROWS, board.COLS);
                     row = in.nextInt() - 1;
                     col = in.nextInt() - 1;
+                    if (isAIGame && (theSeed == aiPlayer.mySeed)) {
+                        //int[] mv = {0,0};
+                        mv[0] = aiPlayer.move()[1];
+                        mv[1] = aiPlayer.move()[2];
+                        row = mv[0];
+                        col = mv[1];
+                    }
                 }
-
-
             }
 
             if (row >= 0 && row < Board.ROWS && col >= 0 && col < Board.COLS
