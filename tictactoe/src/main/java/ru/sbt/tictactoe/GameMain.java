@@ -46,7 +46,6 @@ public class GameMain {
 
     public void initGame() {
         board.init();
-        currentPlayer = Seed.CROSS;
         currentState = GameState.PLAYING;
     }
 
