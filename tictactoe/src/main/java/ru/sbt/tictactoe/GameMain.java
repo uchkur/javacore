@@ -11,8 +11,8 @@ public class GameMain {
     private static Scanner in = new Scanner(System.in);
 
     public GameMain() {
-        int size = 3;
-        System.out.println("Играете за 0? [0 - за нолик, другая цифра - крестик]");
+        System.out.println
+            ("Играете за 0? [0 - за нолик, другая цифра - крестик]");
         if (in.nextInt() == 0)
             currentPlayer=Seed.NOUGHT;
         else currentPlayer=Seed.CROSS;
@@ -23,10 +23,11 @@ public class GameMain {
             board = new Board(3); //todo add 2..20 board support here
         }
         else {
-            System.out.println("Введите сторону доски от 2 до 20 клеток включительно: ");
+            System.out.println
+                ("Введите сторону доски от 2 до 20 клеток включительно: ");
             board = new Board(in.nextInt()); //todo refactor it
         }
-        this.aiPlayer = new AIPlayerTableLookup(board);
+        this.aiPlayer = new AIPlayerMinimax(board);
         initGame();
         do {
             playerMove(currentPlayer);
@@ -38,7 +39,8 @@ public class GameMain {
                 System.out.println("'O' победил! Поздравляю!");
             else if (currentState == GameState.DRAW)
                 System.out.println("Ничья! Пока!");
-            currentPlayer = (currentPlayer == Seed.CROSS) ? Seed.NOUGHT : Seed.CROSS;
+            currentPlayer =
+                (currentPlayer == Seed.CROSS) ? Seed.NOUGHT : Seed.CROSS;
         } while (currentState == GameState.PLAYING);
     }
 
@@ -53,7 +55,9 @@ public class GameMain {
         int row = 0, col = 0;
         do {
             if (theSeed == Seed.CROSS) {
-                System.out.printf("Игрок 'X', ваш ход (строка [1-%s] столбец[1-%s]: ", board.ROWS, board.COLS);
+                System.out.printf
+                    ("Игрок 'X', ваш ход (строка [1-%s] столбец[1-%s]: ",
+                     board.ROWS, board.COLS);
                 row = in.nextInt() - 1;
                 col = in.nextInt() - 1;
             }
@@ -67,7 +71,9 @@ public class GameMain {
                 }
                 else
                 {
-                    System.out.printf("Игрок 'O', ваш ход (строка [1-%s] столбец [1-%s]: ", board.ROWS, board.COLS);
+                    System.out.printf
+                        ("Игрок 'O', ваш ход (строка [1-%s] столбец [1-%s]: "
+                         , board.ROWS, board.COLS);
                     row = in.nextInt() - 1;
                     col = in.nextInt() - 1;
                 }
@@ -82,16 +88,20 @@ public class GameMain {
                 board.currentCol = col;
                 validInput = true;
             } else {
-                System.out.println("Этот ход (" + (row + 1) + ";" + (col + 1) + ") не допустим. Попробйте еще...");
+                System.out.println
+                    ("Этот ход (" + (row + 1) + ";" + (col + 1)
+                     + ") не допустим. Попробйте еще...");
             }
         } while (!validInput);
     }
     public void updateGame(Seed theSeed)
     {
         if (board.hasWon(theSeed))
-            currentState=(theSeed == Seed.CROSS)?GameState.CROSS_WON : GameState.NOUGHT_WON;
-        else  if (board.isDraw())
-            currentState = GameState.DRAW;
+            currentState=(
+                    theSeed == Seed.CROSS)?
+                        GameState.CROSS_WON : GameState.NOUGHT_WON;
+            else  if (board.isDraw())
+                currentState = GameState.DRAW;
     }
 
     public static void main(String[] args) {
