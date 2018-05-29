@@ -8,36 +8,55 @@ public class AIPlayerMinimax extends AIPlayer
       super(board);
    }
    @Override
-   public int[] move()
-   {
-      int[] result = minimax(4, mySeed);
-      return result;
+   public  int[] move() {
+      int[] result = minimax(2, mySeed, Integer.MIN_VALUE, Integer.MAX_VALUE);
+      // depth, max-turn, alpha, beta
+      return new int[] {result[1], result[2]};   // row, col
    }
 
-   private int[] minimax (int depth, Seed player) {
-      List <int[]> nextMoves = generateMoves();
-      int bestScore = (player == mySeed)  ? Integer.MIN_VALUE:Integer.MAX_VALUE;
-      int currentScore;
+   /** Minimax (recursive) at level of depth for maximizing or minimizing player
+    with alpha-beta cut-off. Return int[3] of {score, row, col}  */
+   private int[] minimax(int depth, Seed player, int alpha, int beta) {
+      // Generate possible next moves in a list of int[2] of {row, col}.
+      List<int[]> nextMoves = generateMoves();
+
+      // mySeed is maximizing; while oppSeed is minimizing
+      int score;
       int bestRow = -1;
-      int bestCol = 1;
-      if (nextMoves.isEmpty() || depth ==0) {
-         bestScore = evaluate();
-      } else  {
+      int bestCol = -1;
+
+      if (nextMoves.isEmpty() || depth == 0) {
+         // Gameover or depth reached, evaluate score
+         score = evaluate();
+         return new int[] {score, bestRow, bestCol};
+      } else {
          for (int[] move : nextMoves) {
-            this.cells[move[0]][move[1]].content = player;
-            if (player == mySeed){
-               currentScore = minimax(depth - 1, oppSeed)[0];
-               if (currentScore > bestScore) {
-                  bestScore = currentScore;
+            // try this move for the current "player"
+            cells[move[0]][move[1]].content = player;
+            if (player == mySeed) {  // mySeed (computer) is maximizing player
+               score = minimax(depth - 1, oppSeed, alpha, beta)[0];
+               if (score > alpha) {
+                  alpha = score;
                   bestRow = move[0];
                   bestCol = move[1];
                }
+            } else {  // oppSeed is minimizing player
+               score = minimax(depth - 1, mySeed, alpha, beta)[0];
+               if (score < beta) {
+                  beta = score;
+                  bestRow = move[0];
+                  bestCol = move[1];
+               }
+            }
+            // undo move
+            cells[move[0]][move[1]].content = Seed.EMPTY;
+            // cut-off
+            if (alpha >= beta) break;
          }
-         cells[move[0]][move[1]].content = Seed.EMPTY;
-         }
+         return new int[] {(player == mySeed) ? alpha : beta, bestRow, bestCol};
       }
-      return  new int[]{bestScore, bestRow, bestCol};
    }
+
    private  List<int[]> generateMoves(){
       List<int[]> nextMoves = new ArrayList<int[]>();
       if (hasWon(mySeed) || hasWon(oppSeed)){
