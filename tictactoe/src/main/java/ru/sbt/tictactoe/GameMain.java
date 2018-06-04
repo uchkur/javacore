@@ -27,7 +27,7 @@ public class GameMain {
                 ("Введите сторону доски от 2 до 20 клеток включительно: ");
             board = new Board(in.nextInt()); //todo refactor it
         }
-        this.aiPlayer = new AIPlayerMinimax(board);
+        this.aiPlayer = new AIPlayerMinimaxAlpha(board);
         aiPlayer.setSeed((currentPlayer == Seed.CROSS)? Seed.NOUGHT : Seed.CROSS);
         initGame();
         do {

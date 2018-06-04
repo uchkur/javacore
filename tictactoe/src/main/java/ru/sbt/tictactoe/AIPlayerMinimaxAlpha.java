@@ -9,7 +9,7 @@ public class AIPlayerMinimaxAlpha extends AIPlayer
    }
    @Override
    public  int[] move() {
-      int[] result = minimax(9, mySeed, Integer.MIN_VALUE, Integer.MAX_VALUE);
+      int[] result = minimax(2, mySeed, Integer.MIN_VALUE, Integer.MAX_VALUE);
       // depth, max-turn, alpha, beta
       return new int[] {result[1], result[2]};   // row, col
    }
