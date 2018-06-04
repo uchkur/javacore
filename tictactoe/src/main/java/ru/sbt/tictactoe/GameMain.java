@@ -75,8 +75,8 @@ public class GameMain {
             {
                 if (isAIGame && (theSeed == aiPlayer.mySeed) ) {
                     //int[] mv = {0,0};
-                    mv[0] = aiPlayer.move()[1];
-                    mv[1] = aiPlayer.move()[2];
+                    mv[0] = aiPlayer.move()[0];
+                    mv[1] = aiPlayer.move()[1];
                     row = mv[0];
                     col = mv[1];
                 }
