@@ -9,14 +9,6 @@ public class GameMain {
     private AIPlayer aiPlayer;
     private boolean isAIGame = false;
     private static Scanner in = new Scanner(System.in);
-    private static void oops () {
-        System.out.println("На минимаксе с альфа отсечением");
-        System.out.println("эту задачу не решить.");
-        System.out.println("Число ходов = n!, а n  растет квадратично.");
-        System.out.println("На метод Монте-Карло нет времени :(");
-        System.out.println("Поэтому прошу задать размер доски 3 или 4");
-    }
-
     public GameMain() {
         int bsize=3;
         System.out.println
@@ -27,7 +19,7 @@ public class GameMain {
         System.out.println("Играем с компьютером? (0 = НЕТ, 1 = ДА)");
         isAIGame = (in.nextInt() == 0)?false:true;
             while ((bsize > 20) || (bsize < 3));
-            board = new Board(bsize); //todo add 2..20 board support here
+            board = new Board(bsize);
             do {
                 System.out.println
                         ("Введите сторону доски от 3 до 20 клеток включительно: ");
@@ -72,7 +64,6 @@ public class GameMain {
                 col = in.nextInt() - 1;
 
                 if (isAIGame && (theSeed == aiPlayer.mySeed)) {
-                    //int[] mv = {0,0};
                     mv[0] = aiPlayer.move()[1];
                     mv[1] = aiPlayer.move()[2];
                     row = mv[0];
@@ -82,7 +73,6 @@ public class GameMain {
             else
             {
                 if (isAIGame && (theSeed == aiPlayer.mySeed) ) {
-                    //int[] mv = {0,0};
                     mv[0] = aiPlayer.move()[0];
                     mv[1] = aiPlayer.move()[1];
                     row = mv[0];
