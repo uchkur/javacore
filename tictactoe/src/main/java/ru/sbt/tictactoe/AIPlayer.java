@@ -102,26 +102,6 @@ public abstract class AIPlayer {
         return winner;
     }
 
-    protected boolean hasWon1(Seed thePlayer) {
-        int pattern = 0b000000000;
-        for (int row = 0; row < ROWS; ++row) {
-            for (int col = 0; col < COLS; ++col) {
-                if (cells[row][col].content == thePlayer) {
-                    pattern |= (1 << (row * COLS + col));
-                }
-            }
-        }
-
-        for (int winningPattern : winningPatterns) {
-            if ((pattern & winningPattern) == winningPattern) return true;
-        }
-        return false;
-    }
-    protected int [] winningPatterns = {
-            0b111000000, 0b000111000, 0b000000111, // rows
-            0b100100100, 0b010010010, 0b001001001, // cols
-            0b100010001, 0b001010100               // diagonals
-    };
     protected List<int[]> generateMoves(){
         List<int[]> nextMoves = new ArrayList<int[]>();
         if (hasWon(mySeed) || hasWon(oppSeed)){
