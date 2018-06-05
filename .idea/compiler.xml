@@ -12,6 +12,7 @@
         <module name="lesson3" />
         <module name="lesson4" />
         <module name="tictactoe" />
+        <module name="tvision" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,6 +23,7 @@
       <module name="lesson3" target="1.5" />
       <module name="lesson4" target="1.5" />
       <module name="tictactoe" target="1.8" />
+      <module name="tvision" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
