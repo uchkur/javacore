@@ -9,8 +9,16 @@ public class GameMain {
     private AIPlayer aiPlayer;
     private boolean isAIGame = false;
     private static Scanner in = new Scanner(System.in);
+    private static void oops () {
+        System.out.println("На минимаксе с альфа отсечением");
+        System.out.println("эту задачу не решить.");
+        System.out.println("Число ходов = n!, а n  растет квадратично.");
+        System.out.println("На метод Монте-Карло нет времени :(");
+        System.out.println("Поэтому прошу задать размер доски 3 или 4");
+    }
 
     public GameMain() {
+        int bsize=3;
         System.out.println
             ("Играете за 0? [0 - за нолик, другая цифра - крестик]");
         if (in.nextInt() == 0)
@@ -18,15 +26,15 @@ public class GameMain {
         else currentPlayer=Seed.CROSS;
         System.out.println("Играем с компьютером? (0 = НЕТ, 1 = ДА)");
         isAIGame = (in.nextInt() == 0)?false:true;
-        if (isAIGame)
-        {
-            board = new Board(3); //todo add 2..20 board support here
-        }
-        else {
-            System.out.println
-                ("Введите сторону доски от 2 до 20 клеток включительно: ");
-            board = new Board(in.nextInt()); //todo refactor it
-        }
+            while ((bsize > 20) || (bsize < 3));
+            board = new Board(bsize); //todo add 2..20 board support here
+            do {
+                System.out.println
+                        ("Введите сторону доски от 3 до 20 клеток включительно: ");
+                bsize = in.nextInt();
+            }
+            while ((bsize > 20) || (bsize < 3));
+            board = new Board(bsize);
         this.aiPlayer = new AIPlayerMinimaxAlpha(board);
         aiPlayer.setSeed((currentPlayer == Seed.CROSS)? Seed.NOUGHT : Seed.CROSS);
         initGame();
@@ -107,6 +115,7 @@ public class GameMain {
                 System.out.println
                     ("Этот ход (" + (row + 1) + ";" + (col + 1)
                      + ") не допустим. Попробйте еще...");
+
             }
         } while (!validInput);
     }

@@ -9,29 +9,22 @@ public class AIPlayerMinimaxAlpha extends AIPlayer
    }
    @Override
    public  int[] move() {
-      int[] result = minimax(16, mySeed, Integer.MIN_VALUE, Integer.MAX_VALUE);
-      // depth, max-turn, alpha, beta
+      int[] result = minimax(5, mySeed, Integer.MIN_VALUE, Integer.MAX_VALUE);
       return new int[] {result[1], result[2]};   // row, col
    }
 
-   /** Minimax (recursive) at level of depth for maximizing or minimizing player
-    with alpha-beta cut-off. Return int[3] of {score, row, col}  */
    private int[] minimax(int depth, Seed player, int alpha, int beta) {
-      // Generate possible next moves in a list of int[2] of {row, col}.
       List<int[]> nextMoves = generateMoves();
 
-      // mySeed is maximizing; while oppSeed is minimizing
       int score;
       int bestRow = -1;
       int bestCol = -1;
 
       if (nextMoves.isEmpty() || depth == 0) {
-         // Gameover or depth reached, evaluate score
          score = evaluate();
          return new int[] {score, bestRow, bestCol};
       } else {
          for (int[] move : nextMoves) {
-            // try this move for the current "player"
             cells[move[0]][move[1]].content = player;
             if (player == mySeed) {  // mySeed (computer) is maximizing player
                score = minimax(depth - 1, oppSeed, alpha, beta)[0];
@@ -140,9 +133,9 @@ public class AIPlayerMinimaxAlpha extends AIPlayer
            0b100010001, 0b001010100               // diagonals
    };
 
-   /** Returns true if thePlayer wins */
    private boolean hasWon(Seed thePlayer) {
-      int pattern = 0b000000000;  // 9-bit pattern for the 9 cells
+      int pattern = 0b000000000;
+      //00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
       for (int row = 0; row < ROWS; ++row) {
          for (int col = 0; col < COLS; ++col) {
             if (cells[row][col].content == thePlayer) {
